@@ -12,6 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     'extension.imagemin',
     async node => {
+			if(!node) { return; }
       // The code you place here will be executed every time your command is executed
       await compress(node.path);
     }
