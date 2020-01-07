@@ -2,7 +2,8 @@ import * as fs from 'fs-extra';
 const path = require('path');
 const imagemin = require('imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
-const imageminOptipng = require('imagemin-optipng');
+const imageminPngquant = require('imagemin-pngquant');
+const filesize = require('filesize');
 
 const isFile = async (input: string) => {
   const stat = await fs.lstat(input);
@@ -34,12 +35,20 @@ const findImages = async (input: string) => {
 
 const compressFile = async (input: string) => {
   const dirname = path.dirname(input);
+  const stat = await fs.stat(input);
+  const size = stat.size;
   console.log(`start compress ${input}...`);
+  console.log(`file size: ${filesize(size, {round: 0})}`);
   await imagemin([input], {
     destination: dirname,
-    plugins: [imageminOptipng(), imageminMozjpeg()]
+    plugins: [imageminPngquant(), imageminMozjpeg()]
   });
+  const stat2 = await fs.stat(input);
+  const size2 = stat2.size;
   console.log(`compress ${input} success`);
+  console.log(`after compress file size: ${filesize(size2, {round: 0})}`);
+  const compressPercent = `${((size - size2) / size * 100).toFixed(2)}%`;
+  console.log(`after compress reduce: ${compressPercent}`);
 };
 
 const compress = async (input: string) => {
