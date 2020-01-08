@@ -1,7 +1,8 @@
 {
   "name": "vscode-imagemin",
   "displayName": "vscode-imagemin",
-  "description": "vscode extension to compress jpg/png file",
+  "description": "vscode extension to compress jpg/png file using imagemin",
+  "publisher": "knighd",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.41.0"
@@ -55,5 +56,10 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.1.0",
     "imagemin-pngquant": "^8.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KNighD/vscode-imagemin"
+  },
+  "homepage": "https://github.com/KNighD/vscode-imagemin/blob/master/README.md"
 }
