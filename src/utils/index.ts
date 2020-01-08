@@ -5,10 +5,14 @@ const isFile = async (input: string) => {
   return stat.isFile();
 };
 
+const isImage = (path: string) => {
+  const reg = /(.png|.jpg|.jpeg)$/;
+  return reg.test(path);
+};
+
 // find image under folder
 const findImages = async (input: string) => {
   const basenames = await fs.readdir(input);
-  const test = /(.png|.jpg|.jpeg)$/;
   if (!basenames || basenames.length === 0) {
     return [];
   }
@@ -21,7 +25,7 @@ const findImages = async (input: string) => {
       // if this is a folder then go on find image
       const subImages = await findImages(_path);
       images = [...images, ...subImages];
-    } else if (test.test(_path)) {
+    } else if (isImage(_path)) {
       images.push(_path);
     }
   }
@@ -35,5 +39,5 @@ const getCompressPercent = (size: number, newSize: number) => {
 
 
 export {
-  isFile, findImages, getCompressPercent
+  isFile, findImages, getCompressPercent, isImage
 };

@@ -11,13 +11,20 @@ export function activate(context: vscode.ExtensionContext) {
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand(
     'extension.imagemin',
-    async node => {
-			if(!node) { return; }
-			// The code you place here will be executed every time your command is executed
-			const input = node.path;
-			const outputChannel = vscode.window.createOutputChannel('imagemin');
-			const imagemin = new ImageMin(input, outputChannel);
-      await imagemin.compress();
+    async (node, nodes) => {
+      if (!node && (!nodes || nodes.length === 0)) {
+        return;
+      }
+      let inputs = [];
+      if (nodes && nodes.length) {
+        // multi select
+        inputs = nodes.map((_node: any) => _node.path);
+      } else {
+        inputs = [node.path];
+      }
+      const outputChannel = vscode.window.createOutputChannel('imagemin');
+      const imagemin = new ImageMin(inputs, outputChannel);
+      await imagemin.process();
     }
   );
 
