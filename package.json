@@ -4,6 +4,7 @@
   "description": "vscode extension to compress jpg/png file using imagemin",
   "publisher": "knighd",
   "version": "0.0.1",
+  "icon": "images/imagemin.png",
   "engines": {
     "vscode": "^1.41.0"
   },
