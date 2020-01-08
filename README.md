@@ -22,4 +22,12 @@ when compress successfully, the origin images will replaced by the compressed on
 通过实验了不少插件后发现 mozjpeg 和 pngquant 这两个在速度和压缩比例上都还比较好。
 
 ## ScreenShot
-![example](./example.gif)
+![example](https://images.xiaozhuanlan.com/photo/2020/7c9305e662282413b18296203bbc11c6.gif)
+
+## TodoList
+- 可配置是否替换文件
+- 移除负压缩
+- 添加 icon
+- 可配置压缩比例与压缩插件
+- 减少插件体积
+- 发布
