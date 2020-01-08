@@ -1,65 +1,17 @@
-# vscode-imagemin README
+# vscode-imagemin
 
-This is the README for your extension "vscode-imagemin". After writing up a brief description, we recommend including the following sections.
+this extension enable you to compress your image in vscode using imagemin
 
-## Features
+compress engine: mozjpeg && pngquant
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+**warning** when compress successfully, the origin images will replaced by the compressed ones
 
-For example if there is an image subfolder under your extension project workspace:
+![example](example.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+这个插件可以在 vscode 里压缩图片，压缩插件是 mozjpeg 和 pngquant。
+**注意** 压缩完成后会替换原图
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+开发这个插件主要是由于每次通过 tinypng 网站压缩太过于麻烦了，又不想集成到前端工作流中。
+不使用 tinypng 提供的 api 是由于要钱，免费的额度有可能不够用 😂 通过实验了不少插件后发现 mozjpeg 和 pngquant 这两个在速度和压缩比例上都还比较好。
