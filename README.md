@@ -25,7 +25,6 @@ this extension enable you to compress your image in vscode using imagemin
 通过实验后发现 mozjpeg 和 pngquant 这两个在速度和压缩比例上都还比较好。
 
 ## TodoList
-- 移除负压缩
 - 可配置压缩比例与压缩插件
 - 减少拓展体积
 - 压缩完成弹窗提示

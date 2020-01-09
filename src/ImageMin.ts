@@ -4,7 +4,7 @@ const imagemin = require('imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const filesize = require('filesize');
-import { isFile, findImages, getCompressPercent, isImage } from './utils';
+import { isFile, findImages, getCompressPercent, isImage, replaceFile } from './utils';
 
 interface IOptions {
   replaceOriginImage?: boolean;
@@ -29,7 +29,6 @@ export default class ImageMin implements IImageMin {
 
   compressFile = async (input: string) => {
     if(!isImage(input)) { return; }
-    const dirname = path.dirname(input);
     const stat = await fs.stat(input);
     const size = stat.size;
 
@@ -38,14 +37,19 @@ export default class ImageMin implements IImageMin {
     this.outputChannel.appendLine(`file size: ${filesize(size, { round: 0 })}`);
 
     const [{ data }] = await imagemin([input], {
-      // destination: dirname,
       plugins: [imageminPngquant(), imageminMozjpeg()]
     });
     const extName = path.extname(input);
     const destinationPath = input.replace(extName, `.min${extName}`);
     await fs.writeFile(destinationPath, data);
     const newStat = await fs.stat(destinationPath);
-    const newSize = newStat.size;
+    let newSize = newStat.size;
+
+    if(newSize >= size) {
+      // 无优化/负优化
+      await replaceFile(destinationPath, input);
+      newSize = size;
+    }
     
     this.outputChannel.appendLine(
       `after compress file size: ${filesize(newSize, { round: 0 })}`
@@ -55,8 +59,7 @@ export default class ImageMin implements IImageMin {
     this.outputChannel.appendLine(`compress ${input} success`);
 
     if(this.options.replaceOriginImage) {
-      await fs.remove(input);
-      await fs.rename(destinationPath, input);
+      await replaceFile(input, destinationPath);
     }
   }
 

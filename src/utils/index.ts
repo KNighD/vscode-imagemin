@@ -36,8 +36,12 @@ const getCompressPercent = (size: number, newSize: number) => {
   return `${((size - newSize) / size * 100).toFixed(2)}%`;
 };
 
-
+// replace oldFile to newFile
+const replaceFile = async (oldFile: string, newFile: string) => {
+  await fs.remove(oldFile);
+  await fs.rename(newFile, oldFile);
+};
 
 export {
-  isFile, findImages, getCompressPercent, isImage
+  isFile, findImages, getCompressPercent, isImage, replaceFile
 };
