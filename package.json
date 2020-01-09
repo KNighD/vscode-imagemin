@@ -3,7 +3,7 @@
   "displayName": "ImageMin",
   "description": "本地压缩 jpg/jpeg/png 图片",
   "publisher": "knighd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "images/imagemin.png",
   "engines": {
     "vscode": "^1.41.0"
@@ -68,6 +68,7 @@
     "imagemin-optipng": "^7.1.0",
     "imagemin-pngquant": "^8.0.0"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/KNighD/vscode-imagemin"
