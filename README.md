@@ -15,7 +15,7 @@ this extension enable you to compress your image in vscode using imagemin
 - 没有文件大小限制
 
 ## ScreenShot
-![example](https://images.xiaozhuanlan.com/photo/2020/7c9305e662282413b18296203bbc11c6.gif)
+![example](https://user-images.githubusercontent.com/13437430/72045953-5a7f7b80-32f2-11ea-8313-5a76e749f0dd.gif)
 
 ## Others
 开发这个插件主要是由于每次通过 tinypng 网站压缩太过于麻烦了，又不想集成到前端工作流中。
