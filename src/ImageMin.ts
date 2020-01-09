@@ -6,18 +6,25 @@ const imageminPngquant = require('imagemin-pngquant');
 const filesize = require('filesize');
 import { isFile, findImages, getCompressPercent, isImage } from './utils';
 
+interface IOptions {
+  replaceOriginImage?: boolean;
+}
+
 interface IImageMin {
   inputs: string[];
   outputChannel: any;
+  options: IOptions;
 }
 
 export default class ImageMin implements IImageMin {
   inputs: string[];
   outputChannel: any;
+  options: IOptions;
 
-  constructor(inputs: string[], outputChannel: any) {
+  constructor(inputs: string[], outputChannel: any, options: IOptions ) {
     this.inputs = inputs;
     this.outputChannel = outputChannel;
+    this.options = options;
   }
 
   compressFile = async (input: string) => {
@@ -29,18 +36,28 @@ export default class ImageMin implements IImageMin {
     this.outputChannel.show();
     this.outputChannel.appendLine(`start compress ${input}...`);
     this.outputChannel.appendLine(`file size: ${filesize(size, { round: 0 })}`);
-    await imagemin([input], {
-      destination: dirname,
+
+    const [{ data }] = await imagemin([input], {
+      // destination: dirname,
       plugins: [imageminPngquant(), imageminMozjpeg()]
     });
-    const newStat = await fs.stat(input);
+    const extName = path.extname(input);
+    const destinationPath = input.replace(extName, `.min${extName}`);
+    await fs.writeFile(destinationPath, data);
+    const newStat = await fs.stat(destinationPath);
     const newSize = newStat.size;
+    
     this.outputChannel.appendLine(
       `after compress file size: ${filesize(newSize, { round: 0 })}`
     );
     const compressPercent = getCompressPercent(size, newSize);
     this.outputChannel.appendLine(`after compress reduce: ${compressPercent}`);
     this.outputChannel.appendLine(`compress ${input} success`);
+
+    if(this.options.replaceOriginImage) {
+      await fs.remove(input);
+      await fs.rename(destinationPath, input);
+    }
   }
 
   compress = async (input: string) => {

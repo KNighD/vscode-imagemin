@@ -1,9 +1,9 @@
 {
-  "name": "vscode-imagemin",
-  "displayName": "vscode-imagemin",
+  "name": "imagemin",
+  "displayName": "imagemin",
   "description": "vscode extension to compress jpg/png file using imagemin",
   "publisher": "knighd",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "icon": "images/imagemin.png",
   "engines": {
     "vscode": "^1.41.0"
@@ -28,7 +28,17 @@
           "command": "extension.imagemin"
         }
       ]
-    }
+    },
+    "configuration":{
+      "title": "Imagemin Plugin User Settings",
+      "properties": {
+          "imagemin.replaceOriginImage":{
+              "type": "boolean",
+              "default": true,
+              "description": "Whether replace the origin images"
+          }
+      }
+  }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

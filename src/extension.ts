@@ -23,7 +23,13 @@ export function activate(context: vscode.ExtensionContext) {
         inputs = [node.path];
       }
       const outputChannel = vscode.window.createOutputChannel('imagemin');
-      const imagemin = new ImageMin(inputs, outputChannel);
+      const replaceOriginImage = vscode.workspace
+        .getConfiguration()
+        .get<boolean>('imagemin.replaceOriginImage');
+
+      const imagemin = new ImageMin(inputs, outputChannel, {
+        replaceOriginImage
+      });
       await imagemin.process();
     }
   );
