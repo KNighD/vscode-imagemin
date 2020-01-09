@@ -1,7 +1,7 @@
 {
   "name": "imagemin",
-  "displayName": "imagemin",
-  "description": "vscode extension to compress jpg/jpeg/png file using imagemin",
+  "displayName": "ImageMin",
+  "description": "本地压缩 jpg/jpeg/png 图片",
   "publisher": "knighd",
   "version": "1.0.0",
   "icon": "images/imagemin.png",
@@ -19,7 +19,7 @@
     "commands": [
       {
         "command": "extension.imagemin",
-        "title": "imagemin: compress image"
+        "title": "ImageMin: compress image"
       }
     ],
     "menus": {
@@ -29,16 +29,16 @@
         }
       ]
     },
-    "configuration":{
-      "title": "Imagemin Plugin User Settings",
+    "configuration": {
+      "title": "ImageMin Plugin User Settings",
       "properties": {
-          "imagemin.replaceOriginImage":{
-              "type": "boolean",
-              "default": true,
-              "description": "Whether replace the origin images"
-          }
+        "imagemin.replaceOriginImage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether replace the origin images"
+        }
       }
-  }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

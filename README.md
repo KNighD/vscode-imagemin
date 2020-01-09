@@ -1,8 +1,8 @@
-# imagemin
+# ImageMin
 
 this extension enable you to compress your image in vscode using imagemin
 
-这个插件可以在 vscode 里压缩图片，压缩插件是 mozjpeg 和 pngquant。
+这个插件可以在 vscode 里压缩并替换图片，压缩插件是 mozjpeg 和 pngquant。
 
 **注意** 
 压缩完成后默认替换原图
@@ -26,7 +26,5 @@ this extension enable you to compress your image in vscode using imagemin
 
 ## TodoList
 - 可配置压缩比例与压缩插件
-- 减少拓展体积
-- 压缩完成弹窗提示
-- 补全 testcase
-- 发布
+- 压缩其他格式：gif,webp...
+- 优化拓展体积
