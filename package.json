@@ -1,7 +1,7 @@
 {
   "name": "imagemin",
   "displayName": "imagemin",
-  "description": "vscode extension to compress jpg/png file using imagemin",
+  "description": "vscode extension to compress jpg/jpeg/png file using imagemin",
   "publisher": "knighd",
   "version": "1.0.0",
   "icon": "images/imagemin.png",

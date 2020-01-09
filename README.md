@@ -1,4 +1,4 @@
-# vscode-imagemin
+# imagemin
 
 this extension enable you to compress your image in vscode using imagemin
 
@@ -10,7 +10,7 @@ this extension enable you to compress your image in vscode using imagemin
 
 ## Feature
 - 支持压缩 单文件，多文件，文件夹 下的图片
-- 支持直接替换原图
+- 支持直接替换原图(默认替换原图，可配置)
 - 无需 apikey, 本地压缩
 - 没有文件大小限制
 
